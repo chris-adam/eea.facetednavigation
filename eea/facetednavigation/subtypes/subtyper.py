@@ -11,6 +11,7 @@ from eea.facetednavigation.interfaces import IFacetedSearchMode
 from eea.facetednavigation.interfaces import IHidePloneLeftColumn
 from eea.facetednavigation.interfaces import IHidePloneRightColumn
 from eea.facetednavigation.subtypes.interfaces import IFacetedSubtyper
+from importlib.metadata import version
 from Products.Five.browser import BrowserView
 from Products.statusmessages.interfaces import IStatusMessage
 from zope.event import notify
@@ -19,10 +20,8 @@ from zope.interface import implementer
 from zope.interface import noLongerProvides
 from zope.publisher.interfaces import NotFound
 
-import pkg_resources
 
-
-plone_version = pkg_resources.get_distribution("Products.CMFPlone").version
+plone_version = version("Products.CMFPlone")
 
 
 @implementer(IFacetedSubtyper)

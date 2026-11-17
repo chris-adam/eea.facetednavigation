@@ -2,7 +2,7 @@ name: Tests
 on: [push]
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     strategy:
       fail-fast: false
       matrix:
@@ -17,12 +17,15 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Setup Plone ${{ matrix.plone }} with Python ${{ matrix.python }}
-        id: setup
-        uses: plone/setup-plone@v1.1.0
+      - name: Set up Python ${{ matrix.python }}
+        uses: actions/setup-python@v5
         with:
           python-version: ${{ matrix.python }}
-          plone-version: ${{ matrix.plone }}
+
+      - name: Setup Plone ${{ matrix.plone }}
+        run: |
+          pip install -U pip setuptools wheel -c https://dist.plone.org/release/${{ matrix.plone }}/constraints.txt
+          pip install Plone plone.app.testing -c https://dist.plone.org/release/${{ matrix.plone }}/constraints.txt
 
       - name: Install
         run: |
