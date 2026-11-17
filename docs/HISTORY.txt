@@ -7,6 +7,9 @@ Changelog
   faceted-view.min.js no longer runs before jQuery.bbq is defined and
   faceted results load on Plone 6
   [@chris-adam]
+* Bug fix: Read the Plone version with `importlib.metadata`, `pkg_resources`
+  is gone with setuptools 82+
+  [@chris-adam]
 
 16.4 - (2024-05-08)
 ---------------------------
